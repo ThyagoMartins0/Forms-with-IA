@@ -13,6 +13,9 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
+    'openai' => [
+        'secret' => env('OPENAI_SECRET'),
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
