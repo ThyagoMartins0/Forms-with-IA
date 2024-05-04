@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário para Testar a API</title>
+    <!-- Importar Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos Adicionais para Melhorar a Aparência */
+        .container {
+            margin-top: 50px;
+        }
+        .result {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">Formulário para Testar a API</h1>
+    <form id="testForm">
+        <div class="form-group">
+            <label for="name">Nome:</label>
+            <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição:</label>
+            <input type="text" class="form-control" id="description">
+        </div>
+        <div class="form-group">
+            <label for="hobbies">Hobbies:</label>
+            <input type="text" class="form-control" id="hobbies">
+        </div>
+        <div class="form-group">
+            <label for="experience">Experiência:</label>
+            <input type="text" class="form-control" id="experience">
+        </div>
+        <div class="form-group">
+            <label for="impacto_social">Impacto Social:</label>
+            <input type="text" class="form-control" id="impacto_social">
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <!-- Área para Exibir a Resposta da API -->
+    <div class="result alert alert-info"></div>
+</div>
+
+<!-- Importar JQuery e Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Função que será chamada no envio do formulário
+    $('#testForm').on('submit', function (event) {
+        event.preventDefault();
+
+        // Obtenha os dados do formulário
+        var formData = {
+            name: $('#name').val(),
+            email: $('#email').val(),
+            description: $('#description').val(),
+            hobbies: $('#hobbies').val(),
+            experience: $('#experience').val(),
+            impacto_social: $('#impacto_social').val()
+        };
+
+        // Envia os dados para a API usando AJAX
+        $.ajax({
+            url: '/api/forms', // Alterar para o endereço correto
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function (response) {
+                // Exibir a resposta da API no campo de resultado
+                $('.result').text(response).show();
+            },
+            error: function (xhr, status, error) {
+                // Exibir uma mensagem de erro
+                $('.result').text('Erro ao enviar o formulário: ' + error).addClass('alert-danger').show();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

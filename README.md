@@ -15,3 +15,9 @@ Repository
 S.O.L.I.D ARCTETURE 
 
 Utilizando padrões de clean code para fazer o codigo
+
+
+-----------------------------------------------------------------------------------
+composer require stichoza/google-translate-php
+composer require symfony/translation
+composer require guzzlehttp/guzzle
